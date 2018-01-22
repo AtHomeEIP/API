@@ -1,0 +1,23 @@
+schema {
+    query: Query
+ #   mutation: Mutation
+}
+
+type Query {
+    allModules: [Module]
+}
+
+type Module {
+    id: ID!
+    mac: String!
+    name: String!
+    location: String!
+    type: String!
+    vendor: String!
+ #   data: [Sample!]
+}
+
+#type Sample {
+#    idModule: ID!
+#    datas: [Float!]!
+#}
