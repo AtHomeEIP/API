@@ -7,6 +7,10 @@ type Query {
     allModules: [Module]
 }
 
+extend type Query{
+    getModuleById(id: ID!): Module
+}
+
 type Module {
     id: ID!
     mac: String!
