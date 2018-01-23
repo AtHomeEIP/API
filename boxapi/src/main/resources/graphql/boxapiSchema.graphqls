@@ -18,10 +18,11 @@ type Module {
     location: String!
     type: String!
     vendor: String!
- #   data: [Sample!]
+    samples: [Sample]!
 }
 
-#type Sample {
-#    idModule: ID!
-#    datas: [Float!]!
-#}
+type Sample {
+    moduleId: ID!
+    payload: String!
+    date: String!
+}
