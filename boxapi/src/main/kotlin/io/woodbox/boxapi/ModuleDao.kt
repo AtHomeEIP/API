@@ -2,6 +2,14 @@ package io.woodbox.boxapi
 
 import org.springframework.stereotype.Component
 import java.util.*
+import org.jetbrains.exposed.sql.*
+import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.SchemaUtils.create
+import org.jetbrains.exposed.dao.*
+
+//object Modules : Table(){
+//}
+
 
 @Component
 class ModuleDao{
