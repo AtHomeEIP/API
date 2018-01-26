@@ -22,7 +22,6 @@ type Module {
 }
 
 type Sample {
-    moduleId: ID!
     payload: String!
     date: String!
 }

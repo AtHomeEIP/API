@@ -9,7 +9,7 @@
 	<packaging>jar</packaging>
 
 	<name>boxapi</name>
-	<description>Demo project for Spring Boot</description>
+	<description>woodbox eip project</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -17,6 +17,14 @@
 		<version>1.5.9.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+	<repositories>
+		<repository>
+			<id>exposed</id>
+			<name>exposed</name>
+			<url>https://dl.bintray.com/kotlin/exposed</url>
+		</repository>
+	</repositories>
 
 	<properties>
 		<kotlin.compiler.incremental>true</kotlin.compiler.incremental>
@@ -27,6 +35,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.jetbrains.exposed</groupId>
+			<artifactId>exposed</artifactId>
+			<version>0.9.1</version>
+		</dependency>
 		<dependency>
 			<groupId>com.graphql-java</groupId>
 			<artifactId>graphiql-spring-boot-starter</artifactId>
