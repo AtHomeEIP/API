@@ -1,5 +1,6 @@
 package io.woodbox.boxapi
 
+import org.jetbrains.exposed.sql.*
 
 data class Module(
         val id: String,
