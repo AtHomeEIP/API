@@ -31,6 +31,7 @@ fun main(args: Array<String>) {
     )
 
     transaction {
+        drop(Cities, Users)
         create(Cities, Users)
 
         val saintPetersburgId = Cities.insert {
