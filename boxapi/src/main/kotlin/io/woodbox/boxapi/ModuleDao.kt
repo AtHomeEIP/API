@@ -12,7 +12,9 @@ class ModuleDao{
 
     fun getAllModules():List<ModuleData> =
         transaction {
-             Module.all().map { ModuleData(
+             Module.all().map {
+
+                 ModuleData(
                     it.id.toString(),
                     it.mac,
                     it.name,

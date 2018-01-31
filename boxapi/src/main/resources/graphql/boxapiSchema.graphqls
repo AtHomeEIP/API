@@ -18,8 +18,8 @@ type Module {
     type: String!
     vendor: String!
     location: String!
-   # samples: [Sample]!
     mac: String!
+    samples: [Sample]!
 }
 
 type Sample {

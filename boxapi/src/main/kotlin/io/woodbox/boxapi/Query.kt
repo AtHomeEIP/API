@@ -6,6 +6,5 @@ import org.springframework.stereotype.Component
 @Component
 class Query(private val moduleDao: ModuleDao ) : GraphQLQueryResolver {
     fun allModules() = moduleDao.getAllModules()
-    //fun allModules() = moduleDao.getAllModules()
   //  fun getModuleById(id: String) = moduleDao.getModuleById(id)
 }
