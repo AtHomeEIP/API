@@ -6,5 +6,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class ModuleResolver(private val sampleDao: SampleDao) : GraphQLResolver<Module> {
-    fun samples(module: Module) = sampleDao.getSamplesByModuleId(module.id)
+      fun samples(module: Module) = "test resolver sample"
+//    fun samples(module: Module) = sampleDao.getSamplesByModuleId(module.id)
 }

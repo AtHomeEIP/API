@@ -23,13 +23,9 @@ object Cities : Table() {
 }
 
 fun main(args: Array<String>) {
-    var db = Database.connect(
-        "jdbc:postgresql://woodbox.io:5432/"
-        , driver = "org.h2.Driver"
-        , user = "boxapi"
-        , password = "cheeki42breeki"
-    )
 
+    Connection.db
+/*
     transaction {
         drop(Cities, Users)
         create(Cities, Users)
@@ -76,6 +72,6 @@ fun main(args: Array<String>) {
             it[cityId] = null
         }
     }
-
+*/
         SpringApplication.run(BoxapiApplication::class.java, *args)
 }

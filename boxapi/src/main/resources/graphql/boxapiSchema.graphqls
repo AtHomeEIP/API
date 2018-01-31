@@ -4,21 +4,22 @@ schema {
 }
 
 type Query {
+    #allModules: String!
     allModules: [Module]
 }
 
-extend type Query{
-    getModuleById(id: ID!): Module
-}
+#extend type Query{
+#    getModuleById(id: ID!): Module
+#}
 
 type Module {
     id: ID!
-    mac: String!
     name: String!
-    location: String!
     type: String!
     vendor: String!
-    samples: [Sample]!
+    location: String!
+   # samples: [Sample]!
+    mac: String!
 }
 
 type Sample {
