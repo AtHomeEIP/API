@@ -25,6 +25,7 @@ object Cities : Table() {
 fun main(args: Array<String>) {
 
     Connection.db
+    //TODO: Suprimer l exemple
 /*
     transaction {
         drop(Cities, Users)
