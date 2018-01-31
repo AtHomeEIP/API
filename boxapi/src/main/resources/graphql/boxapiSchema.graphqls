@@ -7,9 +7,9 @@ type Query {
     allModules: [Module]
 }
 
-#extend type Query{
-#    getModuleById(id: ID!): Module
-#}
+extend type Query{
+    getModuleById(id: String!): Module
+}
 
 type Module {
     id: ID!

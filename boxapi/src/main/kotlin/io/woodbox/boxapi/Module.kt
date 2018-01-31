@@ -38,10 +38,10 @@ class Module(id: EntityID<Int>): IntEntity(id) {
 }
 
 data class ModuleData(
-        val id: String,
-        val mac: String,
-        val name: String,
-        val location: String,
-        val type: String,
-        val vendor: String
+        var id: String,
+        var mac: String,
+        var name: String,
+        var location: String,
+        var type: String,
+        var vendor: String
 )

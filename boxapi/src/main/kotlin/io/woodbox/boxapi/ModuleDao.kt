@@ -24,7 +24,22 @@ class ModuleDao{
                     it.vendor)
             }
         }
+    fun getModuleById(id: String): ModuleData {
+        val res = ModuleData("","","","","","")
+        transaction {
+            Module.find { Modules.id eq id.toInt()}.forEach {
+                res.id = it.id.toString()
+                res.mac = it.mac
+                res.name = it.name
+                res.location = it.environement_id.toString()
+                res.type = it.type
+                res.vendor = it.vendor
+            }
+        }
+        return res
+    }
 }
+
 
 /*
     fun getModuleById(id: String) = data.firstOrNull { module -> module.id == id }
