@@ -4,6 +4,6 @@ import com.coxautodev.graphql.tools.GraphQLResolver
 import org.springframework.stereotype.Component
 
 @Component
-class ModuleResolver(private val sampleDao: SampleDao) : GraphQLResolver<Module> {
-    fun samples() = sampleDao.getSamples()
+class ModuleResolver(private val sampleDao: SampleDao) : GraphQLResolver<ModuleData> {
+    fun samples(module: ModuleData) = sampleDao.getSamples(module.id.toInt())
 }

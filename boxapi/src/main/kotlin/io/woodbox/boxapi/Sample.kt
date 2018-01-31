@@ -7,7 +7,7 @@ import org.jetbrains.exposed.dao.*
 object Samples: IntIdTable(){
     val module_id = integer("module_id")
     val payload = text("payload")
-    val sampled_at = datetime("sampled_at")
+    val sampled_at = text("sampled_at")
 }
 
 class Sample(id: EntityID<Int>): IntEntity(id) {

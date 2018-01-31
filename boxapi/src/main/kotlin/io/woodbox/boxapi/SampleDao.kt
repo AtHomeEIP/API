@@ -7,13 +7,12 @@ import org.springframework.stereotype.Component
 
 @Component
 class SampleDao{
-    fun getSamples() =
+    fun getSamples(moduleId : Int) =
             transaction {
-                Sample.all().map { SampleData(
+                Sample.find { Samples.module_id eq moduleId }.map { SampleData(
                         it.moduleId,
                         it.payload,
-                        it.sampledAt.toString()
+                        it.sampledAt
                 )}
             }
-//    fun getSamplesByModuleId(moduleId: Int) = data.filter{sample -> sample.moduleId == moduleId }
 }

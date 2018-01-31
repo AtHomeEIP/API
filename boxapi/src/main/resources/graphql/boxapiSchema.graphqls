@@ -4,7 +4,6 @@ schema {
 }
 
 type Query {
-    #allModules: String!
     allModules: [Module]
 }
 
@@ -14,15 +13,16 @@ type Query {
 
 type Module {
     id: ID!
+    mac: String!
     name: String!
+    location: String!
     type: String!
     vendor: String!
-    location: String!
-    mac: String!
     samples: [Sample]!
 }
 
 type Sample {
+    moduleId: Int
     payload: String!
     date: String!
 }
