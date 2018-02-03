@@ -1,7 +1,6 @@
 package io.woodbox.boxapi
 
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.jetbrains.exposed.sql.*
 import org.springframework.stereotype.Component
 
 
@@ -17,17 +16,18 @@ class SampleDao{
             }
 
     fun newSample(sampleInput: SampleInput): SampleData {
-        var sampleId = ""
         transaction {
-            val sample = Sample.new {
+            Sample.new {
                 // TODO real date & formatting
                 sampledAt   = sampleInput.date
                 payload     = sampleInput.payload
                 moduleId    = sampleInput.moduleId
             }
-            sampleId = sample.id.toString()
         }
-        // TODO getSampleByID
-        return SampleData(sampleId.toInt(), "", "")
+        return SampleData (
+            sampleInput.moduleId,
+            sampleInput.payload,
+            sampleInput.date
+        )
     }
 }
