@@ -60,19 +60,17 @@ class ModuleDao{
     }
 
     fun updateModule(id: String, name:String?, location: String?, firmware: String?): ModuleData{
-
-        if (name != null && location != null && firmware != null){
-            transaction {
-                Module.find { Modules.id eq id.toInt() }.forEach {
+        transaction {
+            Module.find { Modules.id eq id.toInt() }.forEach {
+                if(name != null)
                     it.name = name
+                if(location != null)
                     it.environement_id = location.toInt()
+                if(firmware != null)
                     it.firmware = firmware
-                }
             }
-            return (getModuleById(id))
-            //return ModuleData(id,"testmac", name, location,"typetest", "vendortest")
         }
-        return ModuleData(id,"testmac", "nameTest", "locationTest","typetest", "vendortest")
+        return (getModuleById(id))
     }
 }
 

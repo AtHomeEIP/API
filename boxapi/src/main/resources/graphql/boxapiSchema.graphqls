@@ -5,7 +5,7 @@ schema {
 
 type Mutation {
     newModule(module: ModuleInput!): Module
-   # updateModule(id: String!):Module
+    updateModule(id: String!, name: String, location: String, firmware: String):Module
     #addSamples(input: SampleInput!): Sample
 }
 
