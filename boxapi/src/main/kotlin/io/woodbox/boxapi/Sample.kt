@@ -18,9 +18,15 @@ class Sample(id: EntityID<Int>): IntEntity(id) {
 }
 
 data class SampleData(
-    val moduleId: Int,
-    val payload: String,
-    val date: String
+        val moduleId: Int,
+        val payload: String,
+        val date: String
+)
+
+data class SampleInput(
+        val moduleId: Int,
+        val payload: String,
+        val date: String
 )
 
 
