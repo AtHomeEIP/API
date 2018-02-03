@@ -1,6 +1,12 @@
 schema {
     query: Query
- #   mutation: Mutation
+    mutation: Mutation
+}
+
+type Mutation {
+    newModule(module: ModuleInput!): Module
+    updateModule(id: String!, name: String, location: String, firmware: String):Module
+    #addSamples(input: SampleInput!): Sample
 }
 
 type Query {
@@ -11,6 +17,16 @@ type Query {
 extend type Query{
     # Used to retrieve a module's data by its unique identifier.
     getModuleById(id: String!): Module
+}
+
+input ModuleInput{
+    boxId: String!
+    mac: String!
+    name: String!
+    location: String!
+    type: String!
+    vendor: String!
+    firmware: String!
 }
 
 type Module {
@@ -47,6 +63,12 @@ type Module {
     # (see the Sample type)
     # returned as an array
     samples: [Sample]!
+}
+
+input SampleInput{
+    moduleId: Int!
+    payload: String!
+    date: String!
 }
 
 type Sample {

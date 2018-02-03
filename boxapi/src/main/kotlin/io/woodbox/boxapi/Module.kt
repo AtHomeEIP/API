@@ -17,9 +17,9 @@ object Modules : IntIdTable(){
     val vendor = text("vendor")
     val firmware = text("firmware_version")
     val environment_id = integer("environment_id")
-    val created_at = datetime("created_at")
-    val updated_at = datetime("updated_at")
-    val deleted_at = datetime("deleted_at")
+    val created_at = text("created_at")
+    val updated_at = text("updated_at")
+    val deleted_at = text("deleted_at")
     val mac = text("mac_address")
 }
 
@@ -34,7 +34,7 @@ class Module(id: EntityID<Int>): IntEntity(id) {
     var created_at by Modules.created_at
     var updated_at by Modules.updated_at
     var deleted_at by Modules.deleted_at
-    val mac by Modules.mac
+    var mac by Modules.mac
 }
 
 data class ModuleData(
@@ -44,4 +44,14 @@ data class ModuleData(
         var location: String,
         var type: String,
         var vendor: String
+)
+
+data class ModuleInput(
+        var boxId: String,
+        var mac: String,
+        var name: String,
+        var location: String,
+        var type: String,
+        var vendor: String,
+        var firmware: String
 )
