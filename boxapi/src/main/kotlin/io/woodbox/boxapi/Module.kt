@@ -17,9 +17,9 @@ object Modules : IntIdTable(){
     val vendor = text("vendor")
     val firmware = text("firmware_version")
     val environment_id = integer("environment_id")
-    val created_at = datetime("created_at")
-    val updated_at = datetime("updated_at")
-    val deleted_at = datetime("deleted_at")
+    val created_at = text("created_at")
+    val updated_at = text("updated_at")
+    val deleted_at = text("deleted_at")
     val mac = text("mac_address")
 }
 

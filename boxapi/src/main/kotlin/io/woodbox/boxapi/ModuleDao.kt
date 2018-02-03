@@ -41,18 +41,22 @@ class ModuleDao{
 
     fun setNewModule(moduleInput: ModuleInput): ModuleData{
         //Todo : verifier si le module existe deja
+        var moduleId = ""
         transaction {
-                Module.new {
-                box_id = moduleInput.boxId.toInt()
-                mac = moduleInput.mac
-                name = moduleInput.name
-                environement_id = moduleInput.location.toInt()
-                type = moduleInput.type
-                vendor = moduleInput.vendor
-                firmware = moduleInput.firmware
+                val module = Module.new {
+                    box_id = moduleInput.boxId.toInt()
+                    mac = moduleInput.mac
+                    name = moduleInput.name
+                    environement_id = moduleInput.location.toInt()
+                    type = moduleInput.type
+                    vendor = moduleInput.vendor
+                    firmware = moduleInput.firmware
+                    created_at = ""
+                    updated_at= ""
             }
+            moduleId = module.id.toString()
         }
-        return ModuleData("5", moduleInput.mac, moduleInput.name, moduleInput.location, moduleInput.type, moduleInput.vendor)
+        return getModuleById(moduleId)
     }
 
     fun updateModule(id: String, name:String?, location: String?, firmware: String?): ModuleData{
