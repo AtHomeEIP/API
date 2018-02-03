@@ -38,6 +38,38 @@ class ModuleDao{
         }
         return res
     }
+
+    fun setNewModule(moduleInput: ModuleInput): ModuleData{
+        //Todo : verifier si le module existe deja
+        transaction {
+                Module.new {
+                box_id = moduleInput.boxId.toInt()
+                mac = moduleInput.mac
+                name = moduleInput.name
+                environement_id = moduleInput.location.toInt()
+                type = moduleInput.type
+                vendor = moduleInput.vendor
+                firmware = moduleInput.firmware
+            }
+        }
+        return ModuleData("5", moduleInput.mac, moduleInput.name, moduleInput.location, moduleInput.type, moduleInput.vendor)
+    }
+
+    fun updateModule(id: String, name:String?, location: String?, firmware: String?): ModuleData{
+
+        if (name != null && location != null && firmware != null){
+            transaction {
+                Module.find { Modules.id eq id.toInt() }.forEach {
+                    it.name = name
+                    it.environement_id = location.toInt()
+                    it.firmware = firmware
+                }
+            }
+            return (getModuleById(id))
+            //return ModuleData(id,"testmac", name, location,"typetest", "vendortest")
+        }
+        return ModuleData(id,"testmac", "nameTest", "locationTest","typetest", "vendortest")
+    }
 }
 
 
