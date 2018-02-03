@@ -3,12 +3,20 @@ schema {
     mutation: Mutation
 }
 
+# Mutations are queries that can add, update or delete information held by the api
 type Mutation {
+    # Creates a new module to be linked to the WoodBox.
     newModule(module: ModuleInput!): Module
+
+    # Allows the modification of a module previously linked to the WoodBox
     updateModule(id: String!, name: String, location: String, firmware: String):Module
+
+    # Allows the insertion of a new environmental measure harvested by a module into
+    # the API's database. See also the Sample data class
     newSample(sample: SampleInput!): Sample!
 }
 
+# Queries are operations typically used to only fetch data from the API
 type Query {
     # returns all the modules as an array
     allModules: [Module]
@@ -19,6 +27,8 @@ extend type Query{
     getModuleById(id: String!): Module
 }
 
+# Data class used to create a new module from the API.
+# See the Module data class for more information.
 input ModuleInput{
     boxId: String!
     mac: String!
@@ -65,12 +75,16 @@ type Module {
     samples: [Sample]!
 }
 
+# Data class used to insert samples via the API
+# See the "Sample" data class for more information.
 input SampleInput{
     moduleId: Int!
     payload: String!
     date: String!
 }
 
+# Data class representing the data and metadata of a measure
+# harvested by a module of the WoodBox.
 type Sample {
 
     # The id of the module that gathered the environmental sample
@@ -79,6 +93,8 @@ type Sample {
     # The data and metadata  of the samples sent by the module
     payload: String!
 
-    # The timestamp of the sample harvested by the module
+    # The date & time the sample was harvested at.
+    # Formatted as such: "YYYY-MM-DD hh:mm:ss.µs"
+    # For example: 2018-01-02 12:56:13.327164
     date: String!
 }
