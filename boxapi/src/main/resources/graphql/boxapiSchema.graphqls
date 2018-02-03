@@ -5,15 +5,17 @@ schema {
 
 type Mutation {
     newModule(module: ModuleInput!): Module
-   # updateModule(id: String!):Module
+    updateModule(id: String!, name: String, location: String, firmware: String):Module
     newSample(sample: SampleInput!): Sample!
 }
 
 type Query {
+    # returns all the modules as an array
     allModules: [Module]
 }
 
 extend type Query{
+    # Used to retrieve a module's data by its unique identifier.
     getModuleById(id: String!): Module
 }
 
@@ -28,12 +30,38 @@ input ModuleInput{
 }
 
 type Module {
+
+    # The unique identifier of the module
     id: ID!
+
+    # Mac address of the module
+    # Under the format xx:xx:xx:xx:xx:xx
+    # Where x represent an hexadecimal digit
     mac: String!
+
+    # The name of the module
+    # Either the default one or
+    # one choosen by the user
     name: String!
+
+    # The room where the module is located
     location: String!
+
+    # The type of module, returned as a lower case String
+    # As of now, can be either:
+    # - hygrometer
+    # - thermometer
+    # - luxmeter
+    # - athmospherics
     type: String!
+
+    # The vendor of the module
+    # "woodbox"
     vendor: String!
+
+    # environmental samples gathered by the module.
+    # (see the Sample type)
+    # returned as an array
     samples: [Sample]!
 }
 
@@ -44,7 +72,13 @@ input SampleInput{
 }
 
 type Sample {
+
+    # The id of the module that gathered the environmental sample
     moduleId: Int
+
+    # The data and metadata  of the samples sent by the module
     payload: String!
+
+    # The timestamp of the sample harvested by the module
     date: String!
 }
