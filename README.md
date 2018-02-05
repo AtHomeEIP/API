@@ -79,7 +79,7 @@ D --> G(newSample)
 
 - newSample(sample: SampleInput!): Sample!
   Allows the insertion of a new environmental measure harvested by a module into the API's database. See also the **Sample type**
-### Types
+###Types
 
 - Module : **Type** representing one module connected to a woodbox
 
@@ -169,9 +169,12 @@ You can use Graphiql at `http://localhost:8080/graphiql` to test the schemas.
 
 ### Query
 
+You can get all attribute in [Types](#types).
 
+When a variable is required, like the id in `getModuleById(id: String!): Module`, the ''**!**'' is present.
 
 ```json
+query
 {
   	getModuleById(id:"4"){
   		name
@@ -185,6 +188,39 @@ You can use Graphiql at `http://localhost:8080/graphiql` to test the schemas.
     	location
     	vendor
   	}
+}
+```
+
+### Mutation
+
+You can perform **one** mutation per request.
+
+For `newModule(module: ModuleInput!): Module` you have to fill in all the fields of the input [**ModuleInput** ](#input).
+
+```json
+mutation{
+  newModule(module: {
+    boxId: "4"
+    mac:"cc:cc:cc:cc:cc"
+    name:"luxmeter chambre"
+    location:"2"
+    type:"luxmeter"
+    vendor: "woodbox"
+    firmware:"1.0.0"})
+  {
+    name
+    type
+  }
+}
+```
+
+Some parameter are optional like for `updateModule(id: String!, name: String, location: String, firmware: String): Module`.
+
+```json
+mutation{
+	updateModule(id:"5", name: "capteur chambre"){
+  		location
+	}
 }
 ```
 
