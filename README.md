@@ -83,7 +83,7 @@ D --> G(newSample)
 
 - Module : **Type** representing one module connected to a woodbox
 
-  ```Kotlin
+  ```
   type Module {
 
       # The unique identifier of the module
@@ -123,7 +123,7 @@ D --> G(newSample)
 
 - Sample : **Type** representing the *data and metadata* of a measure harvested by a module of the WoodBox.
 
-  ```Kotlin
+  ```
   type Sample {
 
     # The id of the module that gathered the environmental sample
@@ -141,7 +141,8 @@ D --> G(newSample)
 ### Input
 
 - ModuleInput : It's like a type, used to create a new module from the API.
-  ```kotlin
+  
+  ```
   input ModuleInput{
     	boxId: String!
     	mac: String!
@@ -153,7 +154,8 @@ D --> G(newSample)
   }
   ```
 - SampleInput : It's like a type, used to insert samples via the API
-  ```kotlin
+  
+  ```
   input SampleInput{
   	moduleId: Int!
   	payload: String!
