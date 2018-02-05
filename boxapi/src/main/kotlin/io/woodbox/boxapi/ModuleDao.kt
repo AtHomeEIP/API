@@ -10,6 +10,14 @@ import org.jetbrains.exposed.dao.*
 
 @Component
 class ModuleDao{
+    fun whichRoom(environmentId: Int):String{
+        when(environmentId){
+            1 -> return "Salon"
+            2 -> return "Chambre"
+            3 -> return "Cuisine"
+            else -> return "Undefined room"
+        }
+    }
 
     fun getAllModules():List<ModuleData> =
         transaction {
@@ -19,7 +27,7 @@ class ModuleDao{
                     it.id.toString(),
                     it.mac,
                     it.name,
-                    it.environement_id.toString(),
+                    whichRoom(it.environement_id),
                     it.type,
                     it.vendor)
             }
@@ -31,7 +39,7 @@ class ModuleDao{
                 res.id = it.id.toString()
                 res.mac = it.mac
                 res.name = it.name
-                res.location = it.environement_id.toString()
+                res.location = whichRoom(it.environement_id)
                 res.type = it.type
                 res.vendor = it.vendor
             }
