@@ -3,10 +3,13 @@ schema {
     mutation: Mutation
 }
 
-# Mutations are queries that can add, update or delete information held by the api
+# Mutations are queries that can add, update or delete information held by the api.
 type Mutation {
     # Creates a new module to be linked to the WoodBox.
     newModule(module: ModuleInput!): Module
+
+    # Delete a module previously linked to the WoodBox by his ID.
+    deleteModule(id: String!): String!
 
     # Allows the modification of a module previously linked to the WoodBox
     updateModule(id: String!, name: String, location: String, firmware: String):Module

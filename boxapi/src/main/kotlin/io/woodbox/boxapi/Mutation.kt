@@ -9,4 +9,5 @@ class Mutation (private val moduleDao: ModuleDao, private val sampleDao: SampleD
     fun newModule(moduleInput: ModuleInput) = moduleDao.setNewModule(moduleInput)
     fun newSample(sampleInput: SampleInput) = sampleDao.newSample(sampleInput)
     fun updateModule(id: String, name: String?, location: String?, firmware: String?) = moduleDao.updateModule(id, name, location, firmware)
+    fun deleteModule(id: String) = moduleDao.deleteModule(id)
 }

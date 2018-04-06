@@ -80,8 +80,16 @@ class ModuleDao{
         }
         return (getModuleById(id))
     }
-}
 
+    fun deleteModule(id: String):String {
+        transaction {
+            Module.find { Modules.id eq id.toInt() }.forEach {
+                it.delete()
+            }
+        }
+        return ("Your module are delete !")
+    }
+}
 
 /*
     fun getModuleById(id: String) = data.firstOrNull { module -> module.id == id }
