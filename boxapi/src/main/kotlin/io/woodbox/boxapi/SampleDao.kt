@@ -1,5 +1,6 @@
 package io.woodbox.boxapi
 
+import org.jetbrains.exposed.sql.and
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Component
 
@@ -8,11 +9,12 @@ import org.springframework.stereotype.Component
 class SampleDao{
     fun getSamples(moduleId : Int) =
             transaction {
-                Sample.find { Samples.module_id eq moduleId }.map { SampleData(
+
+                Sample.find { Samples.module_id eq moduleId }.limit(100).map { SampleData(
                         it.moduleId,
                         it.payload,
                         it.sampledAt
-                )}
+                ) }
             }
 
     fun newSample(sampleInput: SampleInput): SampleData {
