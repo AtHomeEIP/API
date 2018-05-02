@@ -12,7 +12,7 @@ type Mutation {
     deleteModule(id: String!): String!
 
     # Allows the modification of a module previously linked to the WoodBox
-    updateModule(id: String!, name: String, location: String, firmware: String):Module
+    updateModule(id: String!, name: String, location: String, firmware: String, thresholds: [ThresholdInput!]):Module
 
     # Allows the insertion of a new environmental measure harvested by a module into
     # the API's database. See also the Sample data class
@@ -39,6 +39,7 @@ input ModuleInput{
     location: String!
     type: String!
     vendor: String!
+    threshold: [ThresholdInput!]!
     firmware: String!
 }
 
@@ -76,6 +77,9 @@ type Module {
     # (see the Sample type)
     # returned as an array
     samples: [Sample]!
+
+    # Thresholds of a module
+    thresholds: [Threshold!]!
 }
 
 # Data class used to insert samples via the API
@@ -100,4 +104,21 @@ type Sample {
     # Formatted as such: "YYYY-MM-DD hh:mm:ss.µs"
     # For example: 2018-01-02 12:56:13.327164
     date: String!
+}
+
+#Data class used to change Threshold of a module
+input ThresholdInput {
+    name: String
+    default: Int
+    min: Int
+    max: Int
+    current: Int
+}
+# TODO : faire la doc
+type Threshold {
+    name: String!
+    default: Int
+    min: Int
+    max: Int
+    current: Int
 }
