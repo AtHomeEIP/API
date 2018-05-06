@@ -5,17 +5,19 @@ import org.jetbrains.exposed.sql.transactions.transaction
 import org.springframework.stereotype.Component
 
 @Component
-class ThresholdDao{
+class ThresholdDao {
     fun getThresholds(moduleId : Int) =
             transaction {
-
                 Threshold.find { Thresholds.module_id eq moduleId }.map { ThresholdData(
-                        it.moduleId,
-                        it.name,
-                        it.default,
-                        it.min,
-                        it.max,
-                        it.current
-                ) }
+                    it.moduleId,
+                    it.name,
+                    it.default,
+                    it.min,
+                    it.max,
+                    it.current
+                )
+                }
             }
 }
+
+

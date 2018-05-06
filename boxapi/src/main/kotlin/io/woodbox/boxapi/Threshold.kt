@@ -14,7 +14,7 @@ object Thresholds: IntIdTable(){
 }
 
 class Threshold(id: EntityID<Int>): IntEntity(id) {
-    companion object: IntEntityClass<Sample>(Samples)
+    companion object: IntEntityClass<Threshold>(Thresholds)
     var moduleId by Thresholds.module_id
     var name by Thresholds.name
     var default by Thresholds.default
