@@ -67,7 +67,7 @@ class ModuleDao{
         return getModuleById(moduleId)
     }
 
-    fun updateModule(id: String, name:String?, location: String?, firmware: String?): ModuleData{
+    fun updateModule(id: String, name:String?, location: String?, firmware: String?, thresholds: List<ThresholdData>?): ModuleData{
         transaction {
             Module.find { Modules.id eq id.toInt() }.forEach {
                 if(name != null)
@@ -76,9 +76,31 @@ class ModuleDao{
                     it.environement_id = location.toInt()
                 if(firmware != null)
                     it.firmware = firmware
+                if(thresholds != null && thresholds.any())
+                    updateThreshold(id.toInt(), thresholds)
             }
         }
         return (getModuleById(id))
+    }
+
+    fun updateThreshold(moduleId: Int, threshold: List<ThresholdData>){
+       /*
+        transaction {
+            Threshold.find { Thresholds.module_id eq moduleId }.forEach {
+                it.delete()
+            }
+            threshold.forEach {
+                Threshold.new {
+                    this.moduleId = it.moduleId
+                    this.name = it.name
+                    this.default = it.default
+                    this.min = it.min
+                    this.max = it.max
+                    this.current = it.current
+                }
+            }
+        }
+        */
     }
 
     fun deleteModule(id: String):String {

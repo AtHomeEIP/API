@@ -12,8 +12,7 @@ type Mutation {
     deleteModule(id: String!): String!
 
     # Allows the modification of a module previously linked to the WoodBox
-    #updateModule(id: String!, name: String, location: String, firmware: String, thresholds: [ThresholdInput!]):Module
-    updateModule(id: String!, name: String, location: String, firmware: String):Module
+    updateModule(id: String!, name: String, location: String, firmware: String, thresholds: [Threshold!] ):Module
 
     # Allows the insertion of a new environmental measure harvested by a module into
     # the API's database. See also the Sample data class
