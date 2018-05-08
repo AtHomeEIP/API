@@ -43,7 +43,6 @@ input ModuleInput{
     location: String!
     type: String!
     vendor: String!
-    #threshold: [ThresholdInput!]!
     firmware: String!
 }
 
