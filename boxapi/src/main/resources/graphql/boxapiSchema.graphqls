@@ -17,6 +17,8 @@ type Mutation {
     # Allows the insertion of a new environmental measure harvested by a module into
     # the API's database. See also the Sample data class
     newSample(sample: SampleInput!): Sample!
+
+    newThresholds(thresholds: [ThresholdInput!]!): [Threshold]
 }
 
 # Queries are operations typically used to only fetch data from the API
@@ -108,11 +110,12 @@ type Sample {
 
 #Data class used to change Threshold of a module
 input ThresholdInput {
-    name: String
-    default: Int
-    min: Int
-    max: Int
-    current: Int
+    moduleId: Int!
+    name: String!
+    default: Int!
+    min: Int!
+    max: Int!
+    current: Int!
 }
 # TODO : faire la doc
 type Threshold {

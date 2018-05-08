@@ -77,32 +77,7 @@ class ModuleDao{
                 if(firmware != null)
                     it.firmware = firmware
                 if(thresholds != null && thresholds.any()){
-                    Threshold.find { Thresholds.module_id eq id.toInt() }.forEach {
-                        it.delete()
-                    }
-                    /*
-                    Threshold.new {
-                        this.name = "TestThrehold"
-                        this.moduleId = id.toInt()
-                        this.current = 12
-                        this.max = 50
-                        this.min = 0
-                        this.default = 20
-                    }
-                    */
-                    //TODO : here KotlinNullPointerException
-                    thresholds.forEach { threshold ->
-                        Threshold.new {
-                            this.moduleId = threshold.moduleId
-                            this.name = threshold.name
-                            this.default = threshold.default
-                            this.min = threshold.min
-                            this.max = threshold.max
-                            this.current = threshold.current
-                        }
-                    }
-                    //updateThreshold(id.toInt(), thresholds)
-                    println("============================threhold update==============================")
+                    updateThreshold(id.toInt(),thresholds)
                 }
             }
         }
@@ -110,20 +85,13 @@ class ModuleDao{
     }
 
     fun updateThreshold(moduleId: Int, thresholds: List<ThresholdInput>){
-        thresholds.forEach{
-            println("======================================")
-            println(it.name)
-            println(it.current)
-            println("======================================")
-        }
         transaction {
             Threshold.find { Thresholds.module_id eq moduleId }.forEach {
                 it.delete()
             }
-        }
-        thresholds.forEach { threshold ->
-            transaction {
-               Threshold.new {
+
+            thresholds.forEach { threshold ->
+                Threshold.new {
                     this.moduleId = threshold.moduleId
                     this.name = threshold.name
                     this.default = threshold.default

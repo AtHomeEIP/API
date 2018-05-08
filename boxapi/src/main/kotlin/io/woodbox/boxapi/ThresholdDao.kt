@@ -18,6 +18,25 @@ class ThresholdDao {
                 )
                 }
             }
+
+    fun newThresholds(thresholds: List<ThresholdInput> ) : List<ThresholdData> {
+        transaction {
+            Threshold.find { Thresholds.module_id eq thresholds[0].moduleId }.forEach {
+              it.delete()
+             }
+            thresholds.forEach { threshold ->
+                Threshold.new {
+                    this.moduleId = threshold.moduleId
+                    this.name = threshold.name
+                    this.default = threshold.default
+                    this.min = threshold.min
+                    this.max = threshold.max
+                    this.current = threshold.current
+                }
+            }
+        }
+        return getThresholds(thresholds[0].moduleId)
+    }
 }
 
 
