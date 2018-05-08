@@ -18,6 +18,8 @@ type Mutation {
     # the API's database. See also the Sample data class
     newSample(sample: SampleInput!): Sample!
 
+    # Allow the modification or the creation of a new threshold for the module.
+    # See also the Threshold data class.
     newThresholds(thresholds: [ThresholdInput!]!): [Threshold]
 }
 
@@ -109,7 +111,9 @@ type Sample {
 }
 
 #Data class used to change Threshold of a module
+# See the "Threshold" data class for more information.
 input ThresholdInput {
+    # The id of the module that need the threshold to visualize it samples.
     moduleId: Int!
     name: String!
     default: Int!
@@ -117,11 +121,17 @@ input ThresholdInput {
     max: Int!
     current: Int!
 }
-# TODO : faire la doc
+# Data class representing the data of a threshold
 type Threshold {
+    # Name of the threshold
+    # "Maximum"
     name: String!
+    # The default value of the threshold
     default: Int
+    # The Minimum value of the threshold
     min: Int
+    # The Maximum value of the threshold
     max: Int
+    # The current value of the threshold
     current: Int
 }
