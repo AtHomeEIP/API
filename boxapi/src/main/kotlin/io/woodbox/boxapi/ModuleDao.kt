@@ -67,7 +67,7 @@ class ModuleDao{
         return getModuleById(moduleId)
     }
 
-    fun updateModule(id: String, name:String?, location: String?, firmware: String?, thresholds: List<ThresholdData>?): ModuleData{
+     fun updateModule(id: String, name:String?, location: String?, firmware: String?, thresholds: List<ThresholdInput>?): ModuleData{
         transaction {
             Module.find { Modules.id eq id.toInt() }.forEach {
                 if(name != null)
@@ -76,31 +76,63 @@ class ModuleDao{
                     it.environement_id = location.toInt()
                 if(firmware != null)
                     it.firmware = firmware
-                if(thresholds != null && thresholds.any())
-                    updateThreshold(id.toInt(), thresholds)
+                if(thresholds != null && thresholds.any()){
+                    Threshold.find { Thresholds.module_id eq id.toInt() }.forEach {
+                        it.delete()
+                    }
+                    /*
+                    Threshold.new {
+                        this.name = "TestThrehold"
+                        this.moduleId = id.toInt()
+                        this.current = 12
+                        this.max = 50
+                        this.min = 0
+                        this.default = 20
+                    }
+                    */
+                    //TODO : here KotlinNullPointerException
+                    thresholds.forEach { threshold ->
+                        Threshold.new {
+                            this.moduleId = threshold.moduleId
+                            this.name = threshold.name
+                            this.default = threshold.default
+                            this.min = threshold.min
+                            this.max = threshold.max
+                            this.current = threshold.current
+                        }
+                    }
+                    //updateThreshold(id.toInt(), thresholds)
+                    println("============================threhold update==============================")
+                }
             }
         }
         return (getModuleById(id))
     }
 
-    fun updateThreshold(moduleId: Int, threshold: List<ThresholdData>){
-       /*
+    fun updateThreshold(moduleId: Int, thresholds: List<ThresholdInput>){
+        thresholds.forEach{
+            println("======================================")
+            println(it.name)
+            println(it.current)
+            println("======================================")
+        }
         transaction {
             Threshold.find { Thresholds.module_id eq moduleId }.forEach {
                 it.delete()
             }
-            threshold.forEach {
-                Threshold.new {
-                    this.moduleId = it.moduleId
-                    this.name = it.name
-                    this.default = it.default
-                    this.min = it.min
-                    this.max = it.max
-                    this.current = it.current
+        }
+        thresholds.forEach { threshold ->
+            transaction {
+               Threshold.new {
+                    this.moduleId = threshold.moduleId
+                    this.name = threshold.name
+                    this.default = threshold.default
+                    this.min = threshold.min
+                    this.max = threshold.max
+                    this.current = threshold.current
                 }
             }
         }
-        */
     }
 
     fun deleteModule(id: String):String {

@@ -8,7 +8,6 @@ class Mutation (private val moduleDao: ModuleDao, private val sampleDao: SampleD
 {
     fun newModule(moduleInput: ModuleInput) = moduleDao.setNewModule(moduleInput)
     fun newSample(sampleInput: SampleInput) = sampleDao.newSample(sampleInput)
-    fun updateModule(id: String, name: String?, location: String?, firmware: String?, thresholds: List<ThresholdData> ?) = moduleDao.updateModule(id, name, location, firmware, thresholds)
-    //fun updateModule(id: String, name: String?, location: String?, firmware: String?) = moduleDao.updateModule(id, name, location, firmware)
+    fun updateModule(id: String, name: String?, location: String?, firmware: String?, thresholds: List<ThresholdInput>?) = moduleDao.updateModule(id, name, location, firmware, thresholds)
     fun deleteModule(id: String) = moduleDao.deleteModule(id)
 }
