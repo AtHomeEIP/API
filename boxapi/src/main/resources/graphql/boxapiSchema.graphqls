@@ -77,9 +77,10 @@ type Module {
     vendor: String!
 
     # environmental samples gathered by the module.
+    # The limit and offset variable is needed for the pagination.
     # (see the Sample type)
     # returned as an array
-    samples: [Sample]!
+    samples(limit: Int!, offset: Int!): [Sample]!
 
     # Thresholds of a module
     thresholds: [Threshold]
