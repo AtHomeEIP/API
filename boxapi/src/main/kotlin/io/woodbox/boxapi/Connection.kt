@@ -9,9 +9,9 @@ import org.jetbrains.exposed.dao.*
 
 object Connection{
     var db = Database.connect(
-            "jdbc:postgresql://woodbox.io:5432/",
+            "jdbc:postgresql://localhost:5432/",
             driver = "org.h2.Driver",
-            user = "boxapi",
-            password = "cheeki42breeki"
+            user = "root",
+            password = "root"
     )
 }
